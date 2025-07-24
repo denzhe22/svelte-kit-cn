@@ -8,6 +8,7 @@
 确认可以用 SSH 连接到服务器
     用 ssh 用户名@服务器IP 测试连接。
 
+
     ssh配置，
     Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
     Start-Service sshd
@@ -18,6 +19,21 @@
 启动服务
     $env:HOST="0.0.0.0"; $env:PORT="80"; node index.js
 
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+        
 1、服务器端准备流程中，我已经处理好第一步，开启windows ssh服务，接下来，第二步，我已经在本地生成了ssh密钥对，现在我应
 # create-svelte
 
